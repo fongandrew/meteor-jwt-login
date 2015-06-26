@@ -72,7 +72,8 @@
         Meteor.call('jwtlogin/getToken', email, function(err, res) {        
           if (err) { throw err; }
           if (res) {
-            Accounts.createUser({ email: email, 
+            // NB: The email in the JWT should override the e-mail given
+            Accounts.createUser({ email: 'whatever@example.com', 
                                   password: 'pass', 
                                   jwt: res.token }, 
               function(err) {

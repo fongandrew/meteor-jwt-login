@@ -77,10 +77,11 @@ JWTLogin = {};
         // Invalid token -> ignore
       }
       if (email) {
-        var emailObj = _.findWhere(user.emails, {address: email});
-        if (emailObj) {
-          emailObj.verified = true;
-        }  
+        // Replace emails var with verified address
+        user.emails = [{
+          address: email,
+          verified: true
+        }];
       }
     }
     return oldInsertUserDoc.apply(Accounts, arguments);
