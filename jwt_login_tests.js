@@ -60,6 +60,7 @@
             Accounts.loginWithJWT(res.token, function(err) {
               test.isTrue(err);
               test.equal(err.error, 404);
+              test.equal(err.reason, 'user-not-found');
               done();
             });
           }
