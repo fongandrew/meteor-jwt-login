@@ -29,7 +29,17 @@ JWTLogin = {};
     }
 
     // Payload should be of form {email: email}
-    var email = JWTLogin.verifyToken(options.jwt).email;
+    var email;
+    try {
+      email = JWTLogin.verifyToken(options.jwt).email;
+    } catch (err) {
+      if (err.name === 'JsonWebTokenError') {
+        return {error: new Meteor.Error(400, "invalid-token")};
+      } else {
+        throw err; // Unknown error
+      }
+    }
+    
     if (! _.isString(email)) {
       return {error: new Meteor.Error(400, "invalid-token")};
     }
