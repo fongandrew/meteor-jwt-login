@@ -10,16 +10,30 @@ JWTLogin = {};
   JWTLogin.secret = ( Meteor.settings.JWTLogin && 
                       Meteor.settings.JWTLogin.secret );
 
+  // Options for getToken
+  JWTLogin.tokenOptions = ( Meteor.settings.JWTLogin && 
+                            Meteor.settings.JWTLogin.tokenOptions );
+  JWTLogin.tokenOptions = JWTLogin.tokenOptions || {
+    expiresInMinutes: 48 * 60
+  };
+
+  // Options for verifyToken
+  JWTLogin.verifyOptions = ( Meteor.settings.JWTLogin && 
+                             Meteor.settings.JWTLogin.verifyOptions );
+  JWTLogin.verifyOptions = JWTLogin.verifyOptions || {
+    ignoreExpiration: false
+  };
+
   // Get token to verify e-mail address
   JWTLogin.getToken = function(email) {
     check(this.secret, String);
-    return jwt.sign({ email: email }, this.secret);
+    return jwt.sign({ email: email }, this.secret, this.tokenOptions);
   };
 
   // Verify a token
   JWTLogin.verifyToken = function(token) {
     check(this.secret, String);
-    return jwt.verify(token, this.secret);
+    return jwt.verify(token, this.secret, this.verifyOptions);
   };
 
   // Register a login handler
@@ -35,7 +49,11 @@ JWTLogin = {};
     } catch (err) {
       if (err.name === 'JsonWebTokenError') {
         return {error: new Meteor.Error(400, "invalid-token")};
-      } else {
+      } 
+      else if (err.name === 'TokenExpiredError') {
+        return {error: new Meteor.Error(400, "expired-token")};
+      } 
+      else {
         throw err; // Unknown error
       }
     }

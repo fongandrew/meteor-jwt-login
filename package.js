@@ -1,6 +1,6 @@
 Package.describe({
   name: 'fongandrew:jwt-login',
-  version: '0.1.0',
+  version: '0.1.1',
   summary: 'Login with a JSON Web Token. The JWT payload tied to an e-mail ' + 
            'address, which allows you to send a login link that verifies a ' +
            'user\'s email address before the actual user document is created.'
