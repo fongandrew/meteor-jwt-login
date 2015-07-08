@@ -5,10 +5,11 @@ Package.describe({
   git: 'https://github.com/fongandrew/meteor-jwt-login.git'
 });
 
+Npm.depends({jsonwebtoken: "5.0.2"});
+
 Package.onUse(function(api) {
   'use strict';
   api.versionsFrom('METEOR@1.1.0.2');
-  Npm.depends({jsonwebtoken: "5.0.2"});
   api.use('accounts-password');
   api.use('underscore');
   api.use('random');
