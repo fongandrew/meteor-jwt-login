@@ -1,6 +1,6 @@
 Package.describe({
   name: 'fongandrew:jwt-login',
-  version: '0.1.1',
+  version: '0.1.2',
   summary: 'Log into Meteor\'s user account system with a JSON web token',
   git: 'https://github.com/fongandrew/meteor-jwt-login.git'
 });
