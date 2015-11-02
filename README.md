@@ -1,6 +1,6 @@
 # meteor-jwt-login
 This enables logging in to Meteor's user account system with a JSON web token.
-The JWT payload is tied too an e-mail address, which allows you to send a login
+The JWT payload is tied to an e-mail address, which allows you to send a login
 link that verifies a user's email address before the actual user document is 
 created.
 
