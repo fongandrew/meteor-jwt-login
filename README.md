@@ -4,6 +4,8 @@ The JWT payload is tied to an e-mail address, which allows you to send a login
 link that verifies a user's email address before the actual user document is 
 created.
 
+__THIS PACKAGE IS NOT ACTIVELY MAINTAINED. USE AT YOUR OWN RISK.__
+
 Installation
 ============
 `meteor add fongandrew:jwt-login`
